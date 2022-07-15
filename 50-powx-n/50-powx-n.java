@@ -1,26 +1,26 @@
 class Solution {
     public double myPow(double x, int n) {
-    double res=myPow_(x,Math.abs(n));
-        if(n<0){
-            return 1.0/res;
-        }else{
-            return res;
+        double ans=1;
+        long pow=n;
+        if(pow<0)
+        {
+            pow=Math.abs(pow);
         }
-    }
-    
-    public double myPow_(double x, int n){
-        if(n==0){
-            return 1.0;
-        }else if(n==1){
-            return x;
-        }else{
-            double ans=myPow_(x,n/2);
-            if(n%2==0){
-                return ans*ans;
-            }else{
-                return ans*ans*x;
+        while(pow>0)
+        {
+            if(pow%2==0){
+                x=x*x;
+            pow=pow/2;
+            }
+            else
+            {
+                ans=ans*x;
+                pow=pow-1;
             }
         }
-    }
+        if(n<0)
+            return 1.0/ans;
+        return ans;
 
+}
 }
