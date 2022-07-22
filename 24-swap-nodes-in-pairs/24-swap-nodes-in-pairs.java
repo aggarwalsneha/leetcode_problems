@@ -21,7 +21,7 @@ class Solution {
         ListNode second=p.next.next;
         first.next=second.next;
         p.next=second;
-        p.next.next=first;
+        second.next=first;
         p=p.next.next;
         }
         return ans.next;
