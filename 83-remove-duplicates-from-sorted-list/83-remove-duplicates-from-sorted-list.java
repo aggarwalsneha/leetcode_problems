@@ -15,9 +15,9 @@ class Solution {
         {
             if(p.val==p.next.val)
                 { 
-                ListNode q=p.next;
-                p.next=q.next;
-                q.next=null;
+                // ListNode q=p.next;
+                p.next=p.next.next;
+                // q.next=null;
                 }
             else
             {
