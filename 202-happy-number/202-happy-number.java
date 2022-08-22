@@ -6,7 +6,7 @@ class Solution {
             slow=findSquare(slow);
             fast=findSquare(findSquare(fast));
         }while(slow!=fast);
-        if(slow==1)
+        if(fast==1)
             return true;
         return false;
     }
