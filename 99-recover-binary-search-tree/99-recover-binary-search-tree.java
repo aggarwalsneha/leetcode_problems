@@ -14,35 +14,42 @@
  * }
  */
 class Solution {
-    int k=0;
+    TreeNode first=null,prev=null,middle=null,last=null;
     public void recoverTree(TreeNode root) {
-         List<Integer> arr=new ArrayList<>();
-        arr= inorder(root,arr);
-       Integer[] a = new Integer[arr.size()];
-        a = arr.toArray(a);
-        Arrays.sort(a);
-        matchTree(root,a);
-    }
-    
-    public List<Integer> inorder(TreeNode root,List<Integer> in)
-    {
-        if(root==null)
-            return null;
-       inorder(root.left,in);
-        in.add(root.val);
-        inorder(root.right,in);
-        return in;
+        prev=new TreeNode(Integer.MIN_VALUE);
+        inorder(root);
+        if(first!=null && last!=null)
+        {
+            int temp=first.val;
+            first.val=last.val;
+            last.val=temp;
+        }
+        else if(first!=null && middle!=null)
+        {
+            int temp=first.val;
+            first.val=middle.val;
+            middle.val=temp;
+        }
         
     }
     
-    public void matchTree(TreeNode root,Integer[] arr)
+    public void inorder(TreeNode root)
     {
         if(root==null)
-            return;
-        matchTree(root.left,arr);
-        if(root.val!=arr[k])
-           root.val=arr[k];
-        k++;
-        matchTree(root.right,arr);
+            return ;
+       inorder(root.left);
+        if(prev!=null && root.val<prev.val)
+        {
+            if(first==null)
+            {
+                first=prev;
+                middle=root;
+            }
+            else
+                last=root;
+        }
+        prev=root;
+        inorder(root.right);
     }
+    
 }
