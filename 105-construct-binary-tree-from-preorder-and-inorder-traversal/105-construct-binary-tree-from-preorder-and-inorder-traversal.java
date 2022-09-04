@@ -14,34 +14,25 @@
  * }
  */
 class Solution {
-    int[] pre;
-    Map<Integer,Integer> iomap=new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-         for(int i=0;i<inorder.length;i++)
-         {
-            iomap.put(inorder[i], i);
-         }
-        pre=new int[preorder.length];
-         for(int i=0;i<preorder.length;i++)
-         {
-            pre[i]=preorder[i];
-         }
+            if(inorder==null || preorder==null || inorder.length!=preorder.length)
+            return null;
+        HashMap<Integer,Integer> hm=new HashMap<>();
         
-        return get_Tree(0,inorder.length-1,0,preorder.length-1);
+        for(int i=0;i<inorder.length;i++)
+            hm.put(inorder[i],i);
+        
+        return build(inorder,0,inorder.length-1,preorder,0,preorder.length-1,hm);
     }
-    
-    public TreeNode get_Tree(int prestart,int preend,int instart,int inend)
+     public TreeNode build(int[] inorder,int is,int ie,int[] preorder,int ps,int pe,HashMap<Integer,Integer> hm)
     {
-        if(prestart>=pre.length) return null;
-        if(prestart>preend)
-        return null;
-        int io_index=iomap.get(pre[prestart]);
-        int l=io_index-instart;
-        int r=inend-io_index;
-        TreeNode root=new TreeNode(pre[prestart]);
-        root.left=get_Tree(prestart+1,prestart+l,instart,io_index-1);
-        root.right=get_Tree(prestart+l+1,preend,io_index+1,inend);
-        
+        if(ps>pe || is>ie)
+            return null;
+        TreeNode root=new TreeNode(preorder[ps]);
+        int inroot=hm.get(preorder[ps]);
+        int numsLeft=inroot-is;
+        root.left=build(inorder,is,inroot-1,preorder,ps+1,ps+numsLeft,hm);
+        root.right=build(inorder,inroot+1,ie,preorder,ps+numsLeft+1,pe,hm);
         return root;
     }
     
