@@ -7,13 +7,17 @@ public Stack<Integer> s1=new Stack<>();
     }
     
     public void push(int x) {
-        if(s1.empty())
+        if(s1.empty()){
             top=x;
+            s1.push(x);
+        }
+        else{
         while(!s1.isEmpty())
             s2.push(s1.pop());
-        s2.push(x);
+        s1.push(x);
         while(!s2.isEmpty())
             s1.push(s2.pop());
+        }
     }
     
     public int pop() {
