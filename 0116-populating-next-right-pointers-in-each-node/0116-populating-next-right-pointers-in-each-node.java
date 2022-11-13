@@ -32,7 +32,9 @@ class Solution {
             while(curr!=null)
             {
                 curr.left.next=curr.right;
-                curr.right.next=curr.next==null?null:curr.next.left;
+                if(curr.next==null)
+                    break;
+                curr.right.next=curr.next.left;
                 curr=curr.next;
             }
             curr=temp.left;
