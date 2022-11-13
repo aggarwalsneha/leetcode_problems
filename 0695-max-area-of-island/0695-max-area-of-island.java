@@ -1,5 +1,5 @@
 class Solution {
-    int count=1;
+    int count=0;
     public int maxAreaOfIsland(int[][] grid) {
         int m=grid.length;
         int n=grid[0].length;
@@ -8,9 +8,10 @@ class Solution {
         {
             for(int j=0;j<n;j++)
             {
-               count=1;
+               count=0;
                 if(grid[i][j]==1)
                 {
+                count++;
                 area(grid,i,j);
                 max=Math.max(max,count);
                 }
