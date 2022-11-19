@@ -1,4 +1,4 @@
-import java.util.Map.Entry;
+
 class Solution {
     public int singleNumber(int[] nums) {
         HashMap<Integer,Integer> hm=new HashMap<>();
@@ -9,10 +9,10 @@ class Solution {
             else
                 hm.put(nums[i],1);
         }
-       for(Entry<Integer,Integer> entry: hm.entrySet())
+       for(int i:nums)
         {
-            if(entry.getValue()==1)
-                return entry.getKey();
+            if(hm.get(i)==1)
+                return i;
         }
         return 0;
     }
