@@ -10,8 +10,8 @@ class Solution {
     {
         if(in.size()==k)
             ans.add(new ArrayList<>(in));
-        // if(start>)
-            // return;
+        if(start>n)
+            return;
         for(int i=start;i<=n;i++)
         {
             in.add(i);
