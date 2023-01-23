@@ -38,26 +38,22 @@ class Solution{
 
     static Boolean isSubsetSum(int N, int arr[], int sum){
         // code here
-        int[][] dp=new int[N][sum+1];
-        for(int[] a:dp)
-        Arrays.fill(a,-1);
-        return solve(N-1,arr,sum,dp);
-    }
-    
-    static boolean solve(int ind,int[]arr,int sum,int[][]dp)
-    {
-        if(sum==0)
-        return true;
-        if(ind==0)
-        return arr[ind]==sum;
-        if(dp[ind][sum]!=-1)
-        return dp[ind][sum]==0? false:true;
-        boolean not_pick=solve(ind-1,arr,sum,dp);
-        boolean pick=false;
-        if(arr[ind]<=sum)
-        pick=solve(ind-1,arr,sum-arr[ind],dp);
-        boolean result=pick || not_pick;
-        dp[ind][sum]=result?1:0;
-        return result;
+        boolean[][] dp=new boolean[N][sum+1];
+        for(int i=0;i<N;i++)
+        dp[i][0]=true;
+        dp[0][arr[0]]=true;
+        for(int ind=1;ind<N;ind++)
+        {
+            for(int target=1;target<=sum;target++)
+            {
+                boolean not_pick=dp[ind-1][target];
+                boolean pick=false;
+                if(arr[ind]<=target)
+                pick=dp[ind-1][target-arr[ind]];
+                boolean result=pick || not_pick;
+                dp[ind][target]=result;
+            }
+        }
+        return dp[N-1][sum];
     }
 }
