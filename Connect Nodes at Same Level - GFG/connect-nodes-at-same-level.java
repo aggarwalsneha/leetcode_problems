@@ -160,23 +160,27 @@ class Solution
     {
         // Your code goes here.
         if(root==null)
-        return;
-       Queue<Node>q=new LinkedList<>();
-       q.add(root);
-       while(!q.isEmpty())
-       {
-           int size=q.size();
+            return;
+        Node curr=root;
+        while(curr!=null)
+        {
            Node dummy=new Node(0);
-           while(size-->0)
-           {
-               Node node=q.poll();
-               dummy.nextRight=node;
-               dummy=dummy.nextRight;
-               if(node.left!=null)
-               q.add(node.left);
-               if(node.right!=null)
-               q.add(node.right);
-           }
-       }
+            Node temp=dummy;
+            while(curr!=null)
+            {
+                if(curr.left!=null)
+                {
+                    temp.nextRight=curr.left;
+                    temp=temp.nextRight;
+                }
+                if(curr.right!=null)
+                {
+                    temp.nextRight=curr.right;
+                    temp=temp.nextRight;
+                }
+                curr=curr.nextRight;
+            }
+            curr=dummy.nextRight;
+        }
     }
 }
