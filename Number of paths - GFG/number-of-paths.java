@@ -33,7 +33,7 @@ class Solution{
     
     static int solve(int m,int n,int i,int j,int count)
     {
-        if(i==m-1 || j== n-1)
+        if(i==m-1 && j== n-1)
         return count+1;
         if(i>=m || j>=n)
         return 0;
