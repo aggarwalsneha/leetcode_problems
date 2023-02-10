@@ -1,6 +1,6 @@
 //{ Driver Code Starts
 import java.util.*;
-import java.io.*;
+
 
 class Node
 {
@@ -35,81 +35,76 @@ public void addToTheLast(Node node)
 }
 
   /* Function to print linked list */
-    void printList(PrintWriter out)
+    void printList()
     {
         Node temp = head;
         while (temp != null)
         {
-           out.print(temp.data+" ");
+           System.out.print(temp.data+" ");
            temp = temp.next;
         }  
-        out.println();
+        System.out.println();
     }
 	
 	 
  
      /* Driver program to test above functions */
-    public static void main(String args[])throws IOException
+    public static void main(String args[])
     {
        
          
         /* Constructed Linked List is 1->2->3->4->5->6->
            7->8->8->9->null */
-         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
-         PrintWriter out=new PrintWriter(System.out);
-		 int t=Integer.parseInt(in.readLine().trim());
+         Scanner sc = new Scanner(System.in);
+		 int t=sc.nextInt();
 		 
 		 while(t>0)
          {
-            String s[]=in.readLine().trim().split(" ");
-			int n1 = Integer.parseInt(s[0]);
-			int n2 = Integer.parseInt(s[1]);
-			int n3 = Integer.parseInt(s[2]);
+			int n1 = sc.nextInt();
+			int n2 = sc.nextInt();
+			int n3 = sc.nextInt();
 			LinkedList_Intersection llist1 = new LinkedList_Intersection();
 		    LinkedList_Intersection llist2 = new LinkedList_Intersection();
 			LinkedList_Intersection llist3 = new LinkedList_Intersection();
 			
-			    s=in.readLine().trim().split(" ");
-				int a1=Integer.parseInt(s[0]);
+				int a1=sc.nextInt();
 				Node head1= new Node(a1);
 				Node tail1= head1;
 				
 				for (int i = 1; i < n1; i++) 
 				{
-					int a = Integer.parseInt(s[i]); 
+					int a = sc.nextInt(); 
 					tail1.next = (new Node(a));
 					tail1= tail1.next;
 				}
 			
-			    s=in.readLine().trim().split(" ");
-				int b1=Integer.parseInt(s[0]);
+			
+				int b1=sc.nextInt();
 				Node head2 = new Node(b1);
 				Node tail2 = head2;
 				for (int i = 1; i < n2; i++) 
 				{
-					int b = Integer.parseInt(s[i]);  
+					int b = sc.nextInt();  
 					tail2.next = (new Node(b));
 					tail2= tail2.next;
 				}
-				
-				s=in.readLine().trim().split(" ");
-				int c1=Integer.parseInt(s[0]);
+				if(n3>0){
+				int c1=sc.nextInt();
 				Node head3= new Node(c1);
 				tail1.next = head3;
 				tail2.next = head3;
 				Node tail3=head3;
 				for (int i = 1; i < n3; i++) 
 				{
-					int c = Integer.parseInt(s[i]); 
+					int c = sc.nextInt();   
 					tail3.next = (new Node(c));
 					tail3= tail3.next;
 				}
-				
+				}
 				Intersect obj = new Intersect();
-				out.println(obj.intersectPoint(head1, head2));
+				System.out.println(obj.intersectPoint(head1, head2));
 			t--;			
          }
-         out.close();
     }
 }
 
@@ -134,8 +129,7 @@ class Intersect
 	int intersectPoint(Node head1, Node head2)
 	{
          // code here
-         Node temp1=head1;
-         Node temp2=head2;
+         Node temp1=head1,temp2=head2;
          while(temp1!=temp2)
          {
              if(temp1==null)
@@ -147,7 +141,7 @@ class Intersect
              else
              temp2=temp2.next;
          }
-         return temp1.data;
+         return temp1!=null ? temp1.data:-1;
 	}
 }
 
