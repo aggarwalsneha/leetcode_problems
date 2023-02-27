@@ -1,19 +1,16 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        int max=1;
-        for(int n:nums)
-            max=Math.max(max,n);
-        boolean[] p=new boolean[nums.length+1];
-        for(int n:nums){
-            if(n>0 && n<=nums.length)
-            p[n]=true;
+        int i=0;
+        while(i<nums.length){
+            if(nums[i]>0 && nums[i]<nums.length && nums[nums[i]-1]!=nums[i])
+                swap(nums,i,nums[i]-1);
+            else
+                i++;
         }
-        for(int i=1;i<=nums.length;i++)
-        {
-            if(!p[i])
-                return i;
-        }
-        return max+1;
+        i=0;
+        while(i<nums.length && nums[i]==i+1)
+            i++;
+        return i+1;
     }
     void swap(int[] arr,int i,int j){
         int temp=arr[i];
