@@ -1,19 +1,13 @@
 class Solution {
     public int maxSatisfaction(int[] satisfaction) {
         Arrays.sort(satisfaction);
+        int suffix=0,max=0;
         int n=satisfaction.length;
-        int[]curr=new int[n+1];
-        int[]next=new int[n+1];
-        for(int ind=n-1;ind>=0;ind--)
+        for(int i=n-1;i>=0 && suffix+satisfaction[i]>0;i--)
         {
-            for(int time=0;time<n;time++)
-            {
-                int pick=satisfaction[ind]*(time+1)+next[time+1];
-                int nonpick=next[time];
-                curr[time]=Math.max(pick,nonpick);
-            }
-            next=curr;
+            suffix+=satisfaction[i];
+            max+=suffix;
         }
-        return next[0];
+        return max;
     }
 }
