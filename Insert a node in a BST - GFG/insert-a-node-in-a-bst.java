@@ -20,7 +20,7 @@ class Node {
 class GFG {
     static Node buildTree(String str) {
         // Corner Case
-        if (str.length() == 0 || str.equals('N')) return null;
+        if (str.length() == 0 || str.equals("N")) return null;
         String[] s = str.split(" ");
 
         Node root = new Node(Integer.parseInt(s[0]));
@@ -73,7 +73,7 @@ class GFG {
             new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine().trim());
         while (t > 0) {
-            String s = br.readLine();
+            String s = br.readLine().trim();
             Node root = buildTree(s);
             int key = Integer.parseInt(br.readLine().trim());
             Solution T = new Solution();
@@ -102,18 +102,25 @@ class Solution {
     // Function to insert a node in a BST.
     Node insert(Node root, int Key) {
         // your code here
-        if(root==null)
-        return new Node(Key);
-        if(root.data==Key)
-        return root;
-        if(root.data<Key)
-        insert(root.right,Key);
-        else
-        insert(root.left,Key);
-        if(root.data<Key && root.right==null)
-        root.right=new Node(Key);
-        if(root.data>Key && root.left==null)
-        root.left=new Node(Key);
+        Node head=root;
+        Node prev=root;
+        while(head!=null)
+        {
+            if(head.data==Key)
+            return root;
+            else if(head.data<Key){
+            prev=head;
+            head=head.right;
+            }
+            else{
+                prev=head;
+                head=head.left;
+            }
+        }
+        if(prev.data>Key)
+        prev.left=new Node(Key);
+        else if(prev.data<Key)
+        prev.right=new Node(Key);
         return root;
     }
 }
