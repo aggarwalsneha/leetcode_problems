@@ -48,36 +48,38 @@ class Solution
     int[] JobScheduling(Job arr[], int n)
     {
         // Your code here
-        pair[] p=new pair[n];
+        Arrays.sort(arr,(a,b)->b.profit-a.profit);
+        int maxi=0;
+        for(int i=0;i<n;i++)
+            maxi=Math.max(maxi,arr[i].deadline);
+        int[] res=new int[maxi+1];
+        Arrays.fill(res,-1);
+        int count=0,profit=0;
         for(int i=0;i<n;i++){
-            p[i]=new pair(arr[i].deadline,arr[i].profit);
-        }
-        Arrays.sort(p,(a,b)->a.first-b.first);
-        Queue<Integer>q=new PriorityQueue<>();
-        int count=0;
-        for(int i=0;i<n;i++){
-            if(count<p[i].first){
-                count++;
-                q.offer(p[i].second);
-            }
-            else{
-                if(q.peek()<p[i].second){
-                    q.poll();
-                    q.offer(p[i].second);
+            for(int j=arr[i].deadline;j>0;j--){
+                if(res[j]==-1){
+                    res[j]=arr[i].id;
+                    count++;
+                    profit+=arr[i].profit;
+                    break;
                 }
             }
         }
-        int sum=0;
-        while(!q.isEmpty())
-            sum+=q.poll();
-        return new int[]{count,sum};
+        int[] ans=new int[2];
+        ans[0]=count;
+        ans[1]=profit;
+        
+        return ans;
     }
 }
 
-class pair{
-    int first,second;
-    pair(int first,int second){
-        this.first=first;
-        this.second=second;
+/*
+class Job {
+    int id, profit, deadline;
+    Job(int x, int y, int z){
+        this.id = x;
+        this.deadline = y;
+        this.profit = z; 
     }
 }
+*/
