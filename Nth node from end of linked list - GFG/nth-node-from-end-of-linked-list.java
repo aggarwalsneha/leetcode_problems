@@ -1,4 +1,5 @@
 //{ Driver Code Starts
+import java.io.*;
 import java.util.*;
 class Node
 {
@@ -46,28 +47,30 @@ public class LinkedList_Element_From_Last
     }
 	  
      /* Drier program to test above functions */
-    public static void main(String args[])
+    public static void main(String args[])throws IOException
     {
-         Scanner sc = new Scanner(System.in);
-		 int t=sc.nextInt();
+         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+		 int t=Integer.parseInt(in.readLine().trim());
 		 
 		 while(t>0)
          {
-			int n = sc.nextInt();
-			int k = sc.nextInt();
+             String s[]=in.readLine().trim().split(" ");
+			int n = Integer.parseInt(s[0]);
+			int k = Integer.parseInt(s[1]);
 			LinkedList_Element_From_Last llist = new LinkedList_Element_From_Last();
 			//int n=Integer.parseInt(br.readLine());
-			int a1=sc.nextInt();
+			s=in.readLine().trim().split(" ");
+			int a1=Integer.parseInt(s[0]);
 			Node head= new Node(a1);
             llist.addToTheLast(head);
             for (int i = 1; i < n; i++) 
 			{
-				int a = sc.nextInt(); 
+				int a = Integer.parseInt(s[i]); 
 				llist.addToTheLast(new Node(a));
 			}
           
 		//System.out.println(llist.head.data);
-        GfG g = new GfG(); 
+        Solution g = new Solution(); 
 		//System.out.println(k);
 		System.out.println(g.getNthFromLast(llist.head,k));
 		
@@ -92,29 +95,32 @@ class Node
 }
 */
 
-class GfG
+class Solution
 {
     //Function to find the data of nth node from the end of a linked list.
     int getNthFromLast(Node head, int n)
     {
     	// Your code here	
-    	Node temp=head;
-    	int len=0;
-    	while(temp!=null)
-    	{
-    	    len++;
-    	    temp=temp.next;
-    	}
-    	if(n>len)
+    	Node root=head;
+    	int l=length(root);
+    	if(n>l)
     	return -1;
-    	int k=len-n+1;
-    	int i=0;
+    	int k=l-n+1;
     	Node ptr=head;
-    	while(i<k-1)
-    	{
+    	int i=0;
+    	while(i<k-1){
     	    ptr=ptr.next;
     	    i++;
     	}
     	return ptr.data;
+    }
+    
+    static int length(Node head){
+        int count=0;
+        while(head!=null){
+            count++;
+            head=head.next;
+        }
+        return count;
     }
 }
