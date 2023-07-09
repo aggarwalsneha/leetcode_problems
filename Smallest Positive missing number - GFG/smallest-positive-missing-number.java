@@ -1,5 +1,6 @@
 //{ Driver Code Starts
 import java.util.*;
+import java.io.*;
 
 
 // } Driver Code Ends
@@ -26,29 +27,32 @@ class Solution
 
 class Main
 {   
-    public static void main (String[] args) 
+    public static void main (String[] args) throws IOException
     {
 
-		Scanner sc=new Scanner(System.in);
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter out=new PrintWriter(System.out);
 		
         //taking testcases
-		int t=sc.nextInt();
+		int t=Integer.parseInt(in.readLine().trim());
 		while(t-->0){
 		    
 		    //input number n
-			int n=sc.nextInt();
+			int n=Integer.parseInt(in.readLine().trim());
 			int[] arr=new int[n];
+			String s[]=in.readLine().trim().split(" ");
 			
 			//adding elements to the array
 			for(int i=0;i<n;i++)
-				arr[i]=sc.nextInt();
+				arr[i]=Integer.parseInt(s[i]);
 				
 			Solution obj = new Solution();
 			
 			//calling missingNumber()
 			int missing = obj.missingNumber(arr,n);
-			System.out.println(missing);
+			out.println(missing);
 		}
+		out.close();
     }
 }
 
