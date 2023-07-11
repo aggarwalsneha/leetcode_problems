@@ -36,12 +36,10 @@ class Solution {
         while(low<=high)
         {
             int mid=(low+high)/2;
-            if(mid>low && arr[mid]<=arr[mid-1] && mid<high && arr[mid]<=arr[mid+1])
-            return mid;
-            else if(arr[mid]<=arr[high])
-            high=mid-1;
-            else
+            if(arr[mid]>arr[n-1])
             low=mid+1;
+            else
+            high=mid-1;
         }
         return low;
     }
