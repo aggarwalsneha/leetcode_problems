@@ -165,5 +165,6 @@ class Spiral
             left=!left;
         }
         return ans;
+
     }
 }
