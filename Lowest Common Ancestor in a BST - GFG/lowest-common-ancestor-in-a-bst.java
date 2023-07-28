@@ -122,7 +122,7 @@ class BST
     //Function to find the lowest common ancestor in a BST. 
 	Node LCA(Node root, int n1, int n2)
 	{
-        // code here.    
+        // code here.   
         if(root==null)
         return null;
         int curr=root.data;
