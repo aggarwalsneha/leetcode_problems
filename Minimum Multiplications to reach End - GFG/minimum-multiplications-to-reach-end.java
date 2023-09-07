@@ -38,6 +38,8 @@ class Solution {
         Queue<Pair>q=new PriorityQueue<>((a,b)->a.steps-b.steps);
         int[] dist=new int[100000];
         Arrays.fill(dist,Integer.MAX_VALUE);
+        if(start==end)
+        return 0;
         dist[start]=0;
         q.offer(new Pair(start,0));
         while(!q.isEmpty()){
