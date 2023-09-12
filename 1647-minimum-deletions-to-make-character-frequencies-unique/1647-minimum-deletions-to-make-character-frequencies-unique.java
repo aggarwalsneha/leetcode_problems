@@ -8,18 +8,15 @@ class Solution {
         List<Integer> arr=new ArrayList<>(hm.values());
         Set<Integer>freq=new HashSet<>();
         int count=0;
-        // Collections.sort(arr);
         for(int it:arr){
-            if(!freq.contains(it))
-                freq.add(it);
-            else{
+            if(freq.contains(it)){
                 while(freq.contains(it)){
                     it--;
                     count++;
                 }
+            }
                 if(it>0)
                 freq.add(it);
-            }
         }
         return count;
     }
