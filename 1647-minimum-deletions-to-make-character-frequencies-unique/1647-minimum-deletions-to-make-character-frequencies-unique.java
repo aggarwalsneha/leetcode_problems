@@ -8,7 +8,7 @@ class Solution {
         List<Integer> arr=new ArrayList<>(hm.values());
         Set<Integer>freq=new HashSet<>();
         int count=0;
-        Collections.sort(arr);
+        // Collections.sort(arr);
         for(int it:arr){
             if(!freq.contains(it))
                 freq.add(it);
