@@ -2,7 +2,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Node{
+class Node{
     int data;
     Node next;
     
@@ -85,6 +85,7 @@ class Node
 }
 
 */
+
 
 class Solution {
     // Function to pairwise swap elements of a linked list.
