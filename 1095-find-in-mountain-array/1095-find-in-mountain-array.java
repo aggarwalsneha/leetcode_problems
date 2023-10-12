@@ -11,7 +11,6 @@ class Solution {
     public int findInMountainArray(int target, MountainArray mountainArr) {
         int peak=peakIndex(mountainArr);
         int ans=bs(target,0,peak,mountainArr,true);
-        System.out.println(ans);
         if(ans!=-1){
             return ans;
         }
